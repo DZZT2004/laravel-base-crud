@@ -70,7 +70,7 @@ class FumettoController extends Controller
      */
     public function edit(Fumetto $fumetto)
     {
-        //
+        return view('fumettos.edit', compact('fumetto'));
     }
 
     /**
@@ -82,7 +82,18 @@ class FumettoController extends Controller
      */
     public function update(Request $request, Fumetto $fumetto)
     {
-        //
+        $data = $request->all();
+
+        $fumetto->title = $data['title'];
+        $fumetto->description = $data['description'];
+        $fumetto->thumb = $data['thumb'];
+        $fumetto->price = $data['price'];
+        $fumetto->series = $data['series'];
+        $fumetto->sale_date = $data['sale_date'];
+        $fumetto->type = $data['type'];
+        $fumetto->update();
+
+        return redirect()->route('fumettos.show', compact('fumetto'));
     }
 
     /**
@@ -93,6 +104,8 @@ class FumettoController extends Controller
      */
     public function destroy(Fumetto $fumetto)
     {
-        //
+        $fumetto->delete();
+
+        return redirect()->route('fumettos.index');
     }
 }

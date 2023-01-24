@@ -13,6 +13,12 @@
                     <p class="card-text">{{$fumetto->description}}</p>
                     <p class="card-text">{{$fumetto->price}} €</p>
                     <a href="{{ route('fumettos.show', ['fumetto' => $fumetto->id]) }}" class="btn btn-primary">Show</a>
+                    <a href="{{ route('fumettos.edit', ['fumetto' => $fumetto->id]) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('fumettos.destroy', ['fumetto' => $fumetto->id]) }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         @endforeach
