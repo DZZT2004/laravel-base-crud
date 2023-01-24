@@ -14,8 +14,8 @@ class FumettoController extends Controller
      */
     public function index()
     {
-        $fumetti = Fumetto::all();
-        return view('fumetti.index', compact('fumetti'));
+        $fumetti = Fumetto::all(); 
+        return view('fumettos.index', compact('fumetti'));
     }
 
     /**
@@ -25,7 +25,7 @@ class FumettoController extends Controller
      */
     public function create()
     {
-        //
+        return view('fumettos.create');
     }
 
     /**
@@ -36,7 +36,19 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $fumetto = new Fumetto;
+        $fumetto->title = $data['title'];
+        $fumetto->description = $data['description'];
+        $fumetto->thumb = $data['thumb'];
+        $fumetto->price = $data['price'];
+        $fumetto->series = $data['series'];
+        $fumetto->sale_date = $data['sale_date'];
+        $fumetto->type = $data['type'];
+        $fumetto->save();
+
+        return redirect()->route('fumettos.index');
     }
 
     /**
@@ -45,9 +57,9 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Fumetto $fumetto)
     {
-        //
+        return view('fumettos.show', compact('fumetto'));
     }
 
     /**
@@ -56,7 +68,7 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Fumetto $fumetto)
     {
         //
     }
@@ -68,7 +80,7 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Fumetto $fumetto)
     {
         //
     }
@@ -79,7 +91,7 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Fumetto $fumetto)
     {
         //
     }

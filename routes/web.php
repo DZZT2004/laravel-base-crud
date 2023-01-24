@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'FumettoController@index');
+Route::get('/', 'FumettoController@index')->name('home');
+Route::get('/fumettos', 'FumettoController@index')->name('home');
 
-Route::resource('fummetti', 'FumettoController');
+Route::resource('fumettos', 'FumettoController');

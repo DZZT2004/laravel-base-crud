@@ -10,6 +10,9 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
+    <h1>
+        @yield('title')
+    </h1>
     <main>
         @yield('content')
     </main>
